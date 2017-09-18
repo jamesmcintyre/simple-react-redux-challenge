@@ -1,8 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import ConnectedApp from './ConnectedApp';
 import registerServiceWorker from './registerServiceWorker';
+import {Provider} from 'react-redux';
+import configureStore from './store/configure-store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore(
+  {
+    toggle: {
+      value: false
+    }
+  }
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedApp />
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();

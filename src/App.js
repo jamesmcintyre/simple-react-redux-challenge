@@ -5,24 +5,13 @@ import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {on: false};
-    this.toggleColor = this.toggleColor.bind(this);
-  }
-
-  toggleColor() {
-    const toggled = !this.state.on;
-    this.setState({on: toggled});
-  }
-
   render() {
-    const { on } = this.state;
+    const { value } = this.props;
 
     return (
       <div className="App" style={{alignItems: 'center'}}>
-        <ToggleDiv on={on}/>
-        <ToggleButton toggleHandler={this.toggleColor}/>
+        <ToggleDiv on={value}/>
+        <ToggleButton toggleHandler={this.props.actions.toggleValue}/>
       </div>
     );
   }
