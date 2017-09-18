@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ToggleDiv from './toggle-div';
+import ToggleButton from './toggle-btn';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {on: false};
+    this.toggleColor = this.toggleColor.bind(this);
+  }
+
+  toggleColor() {
+    const toggled = !this.state.on;
+    this.setState({on: toggled});
+  }
+
   render() {
+    const { on } = this.state;
+
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App" style={{alignItems: 'center'}}>
+        <ToggleDiv on={on}/>
+        <ToggleButton toggleHandler={this.toggleColor}/>
       </div>
     );
   }
